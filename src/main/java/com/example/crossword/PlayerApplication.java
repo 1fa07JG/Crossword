@@ -10,7 +10,7 @@ public class PlayerApplication {
         cw.exampleSetup();
         //getAnwserRaster();
         PrintCrossword printCrossword = new PrintCrossword();
-        printCrossword.prodecePdfCrossword(cw, "");
+        printCrossword.producePdfCrossword(cw, "");
 
     }
 

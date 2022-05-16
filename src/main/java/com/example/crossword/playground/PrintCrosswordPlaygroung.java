@@ -1,5 +1,8 @@
-package com.example.crossword;
+package com.example.crossword.playground;
 
+import com.example.crossword.Coordinates;
+import com.example.crossword.Crossword;
+import com.example.crossword.PrintCrossword;
 import com.itextpdf.kernel.colors.ColorConstants;
 import com.itextpdf.kernel.geom.PageSize;
 import com.itextpdf.kernel.pdf.PdfDocument;
@@ -14,10 +17,35 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-public class PrintCrossword {
+public class PrintCrosswordPlaygroung {
+    public static void main(String[] args) throws IOException {
+        Crossword cw = new Crossword();
+        cw.exampleSetup();
+        //getAnwserRaster();
+        //PrintCrosswordPlaygroung printCrossword = new PrintCrosswordPlaygroung();
+        //printCrossword.producePdfCrossword(cw, "");
+        printFieldWithLimits(new Coordinates(2,2),new Coordinates(2,2),cw);
+    }
+
+    public static int findStartY(){}
+
+    //finde end und start koordinaten mit methoden
+
+
+
+    public static void printFieldWithLimits(Coordinates start,Coordinates stop,Crossword crossword) {
+// coordinaten zwangsweise an die Größe des Felds anpassen.
+        for (int y = start.getVertikal(); y < stop.getVertikal(); y++) {
+            for (int x = start.getHorizontal(); x < stop.getHorizontal(); x++) {
+                System.out.print("|" + crossword.getRaster()[x][y]);
+            }
+            System.out.println();
+        }
+    }
+
     public static void producePdfCrossword(Crossword cw, String dest) throws IOException, FileNotFoundException {
 
-        cw.raster = trimTable(cw.raster);
+        cw.setRaster(trimTable(cw.getRaster()));
         Crossword.printField();//wird behalten um fehler finden zu können
         if (dest.equals("")) {
             dest = "./crossword.Crossword.pdf";
@@ -31,7 +59,7 @@ public class PrintCrossword {
 
         pdfDoc.addNewPage();
         Document document = new Document(pdfDoc);
-        float[] pointColumnWidths = new float[cw.width];
+        float[] pointColumnWidths = new float[cw.getWidth()];
         for (float cellLength : pointColumnWidths) {
             cellLength = 40F;
         }
@@ -51,11 +79,11 @@ public class PrintCrossword {
     }
 
     private static void fillTable(Crossword cw, Table table, boolean printLetters) {
-        for (int y = 0; y < cw.height; y++) {
+        for (int y = 0; y < cw.getHeight(); y++) {
 
-            for (int x = 0; x < cw.width; x++) {
+            for (int x = 0; x < cw.getWidth(); x++) {
                 //table.addCell(String.valueOf(menu)+String.valueOf(i+y));
-                if (cw.raster[x][y] == ' ') {
+                if (cw.getRaster()[x][y] == ' ') {
                     Cell cellMenu = new Cell();   // Creating a cell
                     String paraMenu = " ";
                     Paragraph paragraph10 = new Paragraph(paraMenu);
@@ -66,7 +94,7 @@ public class PrintCrossword {
                     table.addCell(cellMenu);
                 } else {
                     if (printLetters == true) {
-                        table.addCell(String.valueOf(cw.raster[x][y]));
+                        table.addCell(String.valueOf(cw.getRaster()[x][y]));
                     } else {
                         table.addCell(" ");
                     }
