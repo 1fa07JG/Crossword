@@ -1,5 +1,11 @@
 package com.example.crossword;
 
+import com.itextpdf.kernel.colors.ColorConstants;
+import com.itextpdf.layout.Document;
+import com.itextpdf.layout.element.Cell;
+import com.itextpdf.layout.element.Paragraph;
+import com.itextpdf.layout.element.Table;
+
 import java.util.Arrays;
 
 public class Bin {
@@ -59,5 +65,78 @@ public class Bin {
         }
 
         return connectingChar;
+    }
+
+    public static char[][] trimTable(char[][] table) {
+        int rowIndex = table.length;
+
+        for (int row = 0; row < rowIndex; row++) {
+            if (PrintCrossword.rowIsEmpty(table, row)) {
+                rowIndex = rowIndex - 1;
+                table = deleteOneRow(table, row);
+            }
+        }
+        for (int i = 0; i < table[0].length; i++) {
+            if (PrintCrossword.columnIsEmpty(table, i)) {
+
+            }
+        }
+        return table;
+    }
+
+    public static char[][] deleteOneRow(char[][] table, int toDeleteIndex) {
+        char[][] shortend = new char[table.length - 1][table[0].length];
+        int index = 0;
+        for (int i = 0; i < table.length - 1; i++) {
+            if (i == toDeleteIndex) {
+                index++;
+            }
+            shortend[i] = table[index];
+            index++;
+        }
+        return shortend;
+    }
+
+    public static char[][] deleteOneColumm(char[][] table, int toDeleteIndex) {
+        char[][] shortend = new char[table.length][table[0].length - 1];
+        int index = 0;
+        for (int i = 0; i < table[0].length; i++) {
+            if (i == toDeleteIndex) {
+                index++;
+            }
+            shortend[i] = table[index];
+            index++;
+        }
+        return shortend;
+    }
+
+    static void fillTable(Document document, boolean printLetters) {
+        float[] pointColumnWidths = new float[Crossword.width];
+        Table table = new Table(pointColumnWidths);
+        for (int y = 0; y < Crossword.height; y++) {
+
+            for (int x = 0; x < Crossword.width; x++) {
+                //table.addCell(String.valueOf(menu)+String.valueOf(i+y));
+                if (Crossword.raster[x][y] == ' ') {
+                    Cell cellMenu = new Cell();   // Creating a cell
+                    String paraMenu = " ";
+                    Paragraph paragraph10 = new Paragraph(paraMenu);
+                    cellMenu.add(paragraph10);// Adding content to the cell
+                    cellMenu.setWidth(20F);
+                    cellMenu.setHeight(20F);
+                    cellMenu.setBackgroundColor(ColorConstants.GRAY);
+                    table.addCell(cellMenu);
+                } else {
+                    if (printLetters == true) {
+                        table.addCell(String.valueOf(Crossword.raster[x][y]));
+                    } else {
+                        table.addCell(" ");
+                    }
+                }
+
+
+            }
+        }
+        document.add(table);
     }
 }

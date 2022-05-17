@@ -11,11 +11,10 @@ import com.itextpdf.layout.element.Table;
 
 import java.awt.*;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class PrintCrossword {
-    public static void producePdfCrossword(Crossword cw, String dest) throws IOException, FileNotFoundException {
+    public static void producePdfCrossword(String dest) throws IOException {
 
         //cw.raster = trimTable(cw.raster);
         Crossword.printField();//wird behalten um fehler finden zu können
@@ -31,15 +30,11 @@ public class PrintCrossword {
 
         pdfDoc.addNewPage();
         Document document = new Document(pdfDoc);
-        float[] pointColumnWidths = new float[cw.width];
-        for (float cellLength : pointColumnWidths) {
-            cellLength = 40F;
-        }
-        Table table = new Table(pointColumnWidths);
 
-        fillTable(cw, table, true);
 
-        document.add(table);
+        fillTable(document, true);
+
+
         document.close();
 
 
@@ -50,12 +45,38 @@ public class PrintCrossword {
         System.out.println("crossword.Crossword created");
     }
 
-    private static void fillTable(Crossword cw, Table table, boolean printLetters) {
-        for (int y = 0; y < cw.height; y++) {
 
-            for (int x = 0; x < cw.width; x++) {
+
+
+    public static boolean rowIsEmpty(char[][] table, int rowIndex) {
+        for (char[] chars : table) {
+            //       SPALTE, ZEILE
+            if (chars[rowIndex] != ' ') {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static boolean columnIsEmpty(char[][] table, int columnIndex) {
+        for (int rowIndex = 0; rowIndex < table[0].length; rowIndex++) {
+            if (table[columnIndex][rowIndex] != ' ') {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static void fillTable(Document document, boolean printLetters) {
+        float[] pointColumnWidths = new float[Helper.findStopX() - Helper.findStartX()];
+
+        Table table = new Table(pointColumnWidths);
+
+        for (int y = Helper.findStartY(); y < Helper.findStopY(); y++) {
+
+            for (int x = Helper.findStartX(); x < Helper.findStopX(); x++) {
                 //table.addCell(String.valueOf(menu)+String.valueOf(i+y));
-                if (cw.raster[x][y] == ' ') {
+                if (Crossword.getRaster()[x][y] == ' ') {
                     Cell cellMenu = new Cell();   // Creating a cell
                     String paraMenu = " ";
                     Paragraph paragraph10 = new Paragraph(paraMenu);
@@ -65,8 +86,8 @@ public class PrintCrossword {
                     cellMenu.setBackgroundColor(ColorConstants.GRAY);
                     table.addCell(cellMenu);
                 } else {
-                    if (printLetters == true) {
-                        table.addCell(String.valueOf(cw.raster[x][y]));
+                    if (printLetters) {
+                        table.addCell(String.valueOf(Crossword.getRaster()[x][y]));
                     } else {
                         table.addCell(" ");
                     }
@@ -75,68 +96,6 @@ public class PrintCrossword {
 
             }
         }
-    }
-
-    public static char[][] trimTable(char table[][]) {
-        int rowIndex = table.length;
-
-        for (int row = 0; row < rowIndex; row++) {
-            if (rowIsEmpty(table, row)) {
-                rowIndex = rowIndex - 1;
-                table = deleteOneRow(table, row);
-            }
-        }
-        for (int i = 0; i < table[0].length; i++) {
-            if (colummIsEmpty(table, i)) {
-
-            }
-        }
-        return table;
-    }
-
-
-    public static boolean rowIsEmpty(char table[][], int index) {
-        for (int i = 0; i < table[0].length; i++) {
-            //       SPALTE, ZEILE
-            if (table[i][index] != ' ') {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    public static char[][] deleteOneRow(char table[][], int toDeleteIndex) {
-        char[][] shortend = new char[table.length - 1][table[0].length];
-        int index = 0;
-        for (int i = 0; i < table.length - 1; i++) {
-            if (i == toDeleteIndex) {
-                index++;
-            }
-            shortend[i] = table[index];
-            index++;
-        }
-        return shortend;
-    }
-
-    public static boolean colummIsEmpty(char table[][], int index) {
-        for (int i = 0; i < table.length; i++) {
-            if (table[index][i] != ' ') {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    public static char[][] deleteOneColumm(char table[][], int toDeleteIndex) {
-        char[][] shortend = new char[table.length][table[0].length - 1];
-        int index = 0;
-        for (int i = 0; i < table[0].length; i++) {
-            if (i == toDeleteIndex) {
-                index++;
-            }
-            shortend[i] = table[index];
-            index++;
-        }
-        return shortend;
+        document.add(table);
     }
 }

@@ -7,10 +7,10 @@ public class PlayerApplication {
 
     public static void main(String[] args) throws IOException {
         Crossword cw = new Crossword();
-        cw.exampleSetup();
+        Crossword.exampleSetup();
         //getAnwserRaster();
         PrintCrossword printCrossword = new PrintCrossword();
-        printCrossword.producePdfCrossword(cw, "");
+        printCrossword.producePdfCrossword("");
 
     }
 
