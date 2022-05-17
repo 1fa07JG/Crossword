@@ -14,24 +14,12 @@ public class Crossword {
         return width;
     }
 
-    public static void setWidth(int width) {
-        Crossword.width = width;
-    }
-
     public static int getHeight() {
         return height;
     }
 
-    public static void setHeight(int height) {
-        Crossword.height = height;
-    }
-
     public static char[][] getRaster() {
         return raster;
-    }
-
-    public static void setRaster(char[][] raster) {
-        Crossword.raster = raster;
     }
 
     public static void main(String[] args) {

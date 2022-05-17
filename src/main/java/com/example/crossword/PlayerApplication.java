@@ -6,11 +6,9 @@ public class PlayerApplication {
     static char[][] anwserRaster = new char[Crossword.width][Crossword.height];
 
     public static void main(String[] args) throws IOException {
-        Crossword cw = new Crossword();
         Crossword.exampleSetup();
         //getAnwserRaster();
-        PrintCrossword printCrossword = new PrintCrossword();
-        printCrossword.producePdfCrossword("");
+        PrintCrossword.producePdfCrossword("");
 
     }
 
