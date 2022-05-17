@@ -46,8 +46,6 @@ public class PrintCrossword {
     }
 
 
-
-
     public static boolean rowIsEmpty(char[][] table, int rowIndex) {
         for (char[] chars : table) {
             //       SPALTE, ZEILE
@@ -77,14 +75,14 @@ public class PrintCrossword {
             for (int x = Helper.findStartX(); x < Helper.findStopX(); x++) {
                 //table.addCell(String.valueOf(menu)+String.valueOf(i+y));
                 if (Crossword.getRaster()[x][y] == ' ') {
-                    Cell cellMenu = new Cell();   // Creating a cell
+                    Cell charCell = new Cell();   // Creating a cell
                     String paraMenu = " ";
                     Paragraph paragraph10 = new Paragraph(paraMenu);
-                    cellMenu.add(paragraph10);// Adding content to the cell
-                    cellMenu.setWidth(20F);
-                    cellMenu.setHeight(20F);
-                    cellMenu.setBackgroundColor(ColorConstants.GRAY);
-                    table.addCell(cellMenu);
+                    charCell.add(paragraph10);// Adding content to the cell
+                    charCell.setWidth(20F);
+                    charCell.setHeight(20F);
+                    charCell.setBackgroundColor(ColorConstants.GRAY);
+                    table.addCell(charCell);
                 } else {
                     if (printLetters) {
                         table.addCell(String.valueOf(Crossword.getRaster()[x][y]));

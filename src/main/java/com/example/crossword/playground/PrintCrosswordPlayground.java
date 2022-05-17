@@ -56,6 +56,7 @@ public class PrintCrosswordPlayground {
             System.out.println();
         }
     }
+
     private static void fillTable(Document document, boolean printLetters) {
         float[] pointColumnWidths = new float[Helper.findStopX() - Helper.findStartX()];
 
@@ -124,8 +125,6 @@ public class PrintCrosswordPlayground {
 
         pdfDoc.addNewPage();
         Document document = new Document(pdfDoc);
-
-
 
 
         fillTable(document, true);
