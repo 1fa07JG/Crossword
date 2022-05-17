@@ -2,3 +2,5 @@ Nächste Idee ist ein Array(maximale anzahl an Feldern als limit) oder eine Arra
 deren Daten beim Ausdruck genutzt werden um die ersten buchstaben durch einen (in diesem moment festgelegten
 Index zu ersetzen) der den ersten buchstaben mit der Weiter unter Ausgedruckten Frage verknüpft wird um ein
 Funktionales Kreuzworträtsel zu erzeugen
+
+Question wird mit hinzufügen des Wortes zur Liste Hinzugefügt

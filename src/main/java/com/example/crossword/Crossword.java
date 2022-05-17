@@ -10,6 +10,7 @@ public class Crossword {
     static char[][] raster = new char[width][height];  // x (horizontal) / y (vertikal); 0/0 ist links oben
 
 
+
     public static int getWidth() {
         return width;
     }

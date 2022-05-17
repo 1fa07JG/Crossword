@@ -3,11 +3,13 @@ package com.example.crossword;
 import java.io.IOException;
 
 public class PlayerApplication {
-    static char[][] anwserRaster = new char[Crossword.width][Crossword.height];
+    static char[][] answerRaster = new char[Crossword.width][Crossword.height];
+    static Question[] questionList=new Question[Crossword.getHeight()*Crossword.getWidth()];
+    //alternativ kann auch einen Array list verwendet werden die bessere variante muss noch gefunden werden.
 
     public static void main(String[] args) throws IOException {
         Crossword.exampleSetup();
-        //getAnwserRaster();
+        //getAnswerRaster();
         PrintCrossword.producePdfCrossword("");
 
     }
@@ -16,7 +18,7 @@ public class PlayerApplication {
         for (int y = 0; y < Crossword.height; y++) {
             for (int x = 0; x < Crossword.width; x++) {
                 if (Crossword.raster[x][y] != ' ') {
-                    anwserRaster[x][y] = '_';
+                    answerRaster[x][y] = '_';
                 }
             }
         }
