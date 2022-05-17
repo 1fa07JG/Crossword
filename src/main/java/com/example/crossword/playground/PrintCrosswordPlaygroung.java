@@ -12,10 +12,58 @@ public class PrintCrosswordPlaygroung {
         //getAnwserRaster();
         //PrintCrosswordPlaygroung printCrossword = new PrintCrosswordPlaygroung();
         //printCrossword.producePdfCrossword(cw, "");
-        printFieldWithLimits(new Coordinates(2,2),new Coordinates(2,2),cw);
+        printFieldWithLimits(new Coordinates(0,0),new Coordinates(60,20),cw);
+        System.out.println("Spalte dreißig is leer: "+columnIsEmpty(cw.getRaster(),30));
+        System.out.println("Spalte elf is leer: "+columnIsEmpty(cw.getRaster(),11));
+        System.out.println("Start Char: "+findStartY(cw));
     }
 
-    public static int findStartY(){}
+
+    public static int findStartY(Crossword crossword){
+        char table[][]=crossword.getRaster();
+        for (int i = 0; i < crossword.getHeight(); i++) {
+            if(rowIsEmpty(table,i)==false){
+                return i;
+            }
+        }
+        return crossword.getHeight();
+    }
+
+    public static int findStartx(Crossword crossword){
+        char table[][]=crossword.getRaster();
+        for (int i = 0; i < crossword.getHeight(); i++) {
+            if(rowIsEmpty(table,i)==false){
+                return i;
+            }
+        }
+        return crossword.getHeight();
+    }
+
+    public static int firstChar(Crossword crossword) {
+        Coordinates start;
+        char table[][]=crossword.getRaster();
+        for (int e = 0; e <crossword.getHeight() ; e++) {
+
+
+        for (int i = 0; i < crossword.getWidth(); i++) {
+            //       SPALTE, ZEILE
+            if (table[i][e] != ' ') {
+
+            }
+        }}
+        return table[0].length;
+    }
+
+    public static int lastCharInRow(Crossword crossword, int index) {
+        char table[][]=crossword.getRaster();
+        for (int i = 0; i < table[0].length; i++) {
+            //       SPALTE, ZEILE
+            if (table[i][index] == ' ') {
+                return i;
+            }
+        }
+        return table[0].length;
+    }
 
     //finde end und start koordinaten mit methoden
 
@@ -49,7 +97,7 @@ public class PrintCrosswordPlaygroung {
     public static boolean rowIsEmpty(char table[][], int rowIndex) {
         for (int columnIndex = 0; columnIndex < table.length; columnIndex++) {
             //       SPALTE, ZEILE
-            if (table[i][index] != ' ') {
+            if (table[columnIndex][rowIndex] != ' ') {
                 return false;
             }
         }
