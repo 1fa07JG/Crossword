@@ -17,7 +17,7 @@ import java.io.IOException;
 public class PrintCrossword {
     public static void producePdfCrossword(Crossword cw, String dest) throws IOException, FileNotFoundException {
 
-        cw.raster = trimTable(cw.raster);
+        //cw.raster = trimTable(cw.raster);
         Crossword.printField();//wird behalten um fehler finden zu können
         if (dest.equals("")) {
             dest = "./crossword.Crossword.pdf";
@@ -37,7 +37,7 @@ public class PrintCrossword {
         }
         Table table = new Table(pointColumnWidths);
 
-        fillTable(cw, table, false);
+        fillTable(cw, table, true);
 
         document.add(table);
         document.close();
