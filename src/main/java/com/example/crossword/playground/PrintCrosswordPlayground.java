@@ -34,11 +34,11 @@ public class PrintCrosswordPlayground {
         producePdfCrossword(cw, "");
     }
 
-    public static Coordinates getStartCoordinates(Crossword cw){
+    public static Coordinates getStartCoordinates(Crossword cw) {
         return new Coordinates(findStartX(cw), findStartY(cw));
     }
 
-    public static Coordinates getStopCoordinates(Crossword cw){
+    public static Coordinates getStopCoordinates(Crossword cw) {
         return new Coordinates(findStopX(cw), findStopY(cw));
     }
 
@@ -103,7 +103,7 @@ public class PrintCrosswordPlayground {
                     cellMenu.setBackgroundColor(ColorConstants.GRAY);
                     table.addCell(cellMenu);
                 } else {
-                    if (printLetters == true) {
+                    if (printLetters) {
                         table.addCell(String.valueOf(cw.getRaster()[x][y]));
                     } else {
                         table.addCell(" ");
@@ -159,7 +159,7 @@ public class PrintCrosswordPlayground {
         return true;
     }
 
-    public static void producePdfCrossword(Crossword cw, String dest) throws IOException, FileNotFoundException {
+    public static void producePdfCrossword(Crossword cw, String dest) throws IOException {
 
         //cw.raster = trimTable(cw.raster);
         Crossword.printField();//wird behalten um fehler finden zu können
@@ -175,10 +175,10 @@ public class PrintCrosswordPlayground {
 
         pdfDoc.addNewPage();
         Document document = new Document(pdfDoc);
-        float[] pointColumnWidths = new float[findStopX(cw)-findStartX(cw)];
-        for (float cellLength : pointColumnWidths) {
-            cellLength = 40F;
-        }
+
+
+        float[] pointColumnWidths = new float[findStopX(cw) - findStartX(cw)];
+
         Table table = new Table(pointColumnWidths);
 
         fillTable(cw, table, true);
@@ -193,7 +193,6 @@ public class PrintCrosswordPlayground {
 
         System.out.println("crossword.Crossword created");
     }
-
 
 
 }
