@@ -10,32 +10,6 @@ import java.util.Arrays;
 
 public class Bin {
 
-    public static Coordinates findWord(String s) {
-        char firstChar = s.charAt(0);
-        Coordinates wordBeginning;
-        for (int y = 0; y < Crossword.height; y++) {
-            for (int x = 0; x < Crossword.width; x++) {
-                if (Crossword.raster[x][y] == firstChar) {
-                    wordBeginning = new Coordinates(x, y);
-                    char[] compare = new char[s.length()];
-                    if (Crossword.raster[x + 1][y] == ' ') {
-                        System.arraycopy(Crossword.raster[x], y, compare, 0, s.length());
-                    } else {
-                        for (int z = 0; z < s.length(); z++) {
-                            compare[z] = Crossword.raster[x + z][y];
-                        }
-                    }
-                    if (Arrays.equals(compare, s.toCharArray())) {
-
-                        return wordBeginning;
-                    }
-                }
-            }
-
-        }
-        return null;
-    }
-
     public static boolean canAddWordHere(Coordinates cor) {
         boolean a = Crossword.raster[cor.horizontal][cor.vertikal - 1] == ' ';
         boolean b = Crossword.raster[cor.horizontal][cor.vertikal + 1] == ' ';

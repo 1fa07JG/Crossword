@@ -3,6 +3,7 @@ package com.example.crossword.playground;
 import com.example.crossword.Coordinates;
 import com.example.crossword.Crossword;
 import com.example.crossword.Helper;
+import com.example.crossword.Question;
 import com.itextpdf.kernel.colors.ColorConstants;
 import com.itextpdf.kernel.geom.PageSize;
 import com.itextpdf.kernel.pdf.PdfDocument;
@@ -28,6 +29,7 @@ public class PrintCrosswordPlayground {
         System.out.println("Stop Char X: " + Helper.findStopX());
         printFieldWithLimits(Helper.getStartCoordinates(), Helper.getStopCoordinates());
         producePdfCrossword("");
+        System.out.println(Question.findWord("YEAR"));
     }
 
 
