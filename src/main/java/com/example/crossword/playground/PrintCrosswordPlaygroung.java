@@ -2,19 +2,7 @@ package com.example.crossword.playground;
 
 import com.example.crossword.Coordinates;
 import com.example.crossword.Crossword;
-import com.example.crossword.PrintCrossword;
-import com.itextpdf.kernel.colors.ColorConstants;
-import com.itextpdf.kernel.geom.PageSize;
-import com.itextpdf.kernel.pdf.PdfDocument;
-import com.itextpdf.kernel.pdf.PdfWriter;
-import com.itextpdf.layout.Document;
-import com.itextpdf.layout.element.Cell;
-import com.itextpdf.layout.element.Paragraph;
-import com.itextpdf.layout.element.Table;
 
-import java.awt.*;
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class PrintCrosswordPlaygroung {
