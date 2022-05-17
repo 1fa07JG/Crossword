@@ -15,7 +15,12 @@ public class PrintCrosswordPlaygroung {
         printFieldWithLimits(new Coordinates(0,0),new Coordinates(60,20),cw);
         System.out.println("Spalte dreißig is leer: "+columnIsEmpty(cw.getRaster(),30));
         System.out.println("Spalte elf is leer: "+columnIsEmpty(cw.getRaster(),11));
-        System.out.println("Start Char: "+findStartY(cw));
+        System.out.println("Start Char Y: "+findStartY(cw));
+        System.out.println("Start Char X: "+findStartX(cw));
+        System.out.println("Stop Char Y: "+findStopX(cw));
+        System.out.println("Stop Char X: "+findStopX(cw));
+        printFieldWithLimits(new Coordinates(findStartX(cw),findStartY(cw))
+                ,new Coordinates(findStopX(cw),findStopY(cw)),cw);
     }
 
 
@@ -29,14 +34,36 @@ public class PrintCrosswordPlaygroung {
         return crossword.getHeight();
     }
 
-    public static int findStartx(Crossword crossword){
+    public static int findStartX(Crossword crossword){
         char table[][]=crossword.getRaster();
-        for (int i = 0; i < crossword.getHeight(); i++) {
-            if(rowIsEmpty(table,i)==false){
+        for (int i = 0; i < crossword.getWidth(); i++) {
+            if(columnIsEmpty(table,i)==false){
                 return i;
             }
         }
-        return crossword.getHeight();
+        return crossword.getWidth();
+    }
+
+    public static int findStopY(Crossword crossword){
+        int temporyColumIndex=0;
+        char table[][]=crossword.getRaster();
+        for (int i = 0; i < crossword.getHeight(); i++) {
+            if(rowIsEmpty(table,i)==false){
+                temporyColumIndex=i;
+            }
+        }
+        return temporyColumIndex;
+    }
+
+    public static int findStopX(Crossword crossword){
+        int temporyRowIndex=0;
+        char table[][]=crossword.getRaster();
+        for (int i = 0; i < crossword.getWidth(); i++) {
+            if(columnIsEmpty(table,i)==false){
+               temporyRowIndex=i;
+            }
+        }
+        return temporyRowIndex;
     }
 
     public static int firstChar(Crossword crossword) {
