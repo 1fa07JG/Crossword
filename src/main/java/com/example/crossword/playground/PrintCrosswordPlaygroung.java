@@ -23,9 +23,23 @@ public class PrintCrosswordPlaygroung {
 
     public static void printFieldWithLimits(Coordinates start,Coordinates stop,Crossword crossword) {
 // coordinaten zwangsweise an die Größe des Felds anpassen.
+        System.out.print("  ");
+        for (int x = start.getHorizontal(); x < stop.getHorizontal(); x++) {
+            System.out.print("|" + x);
+
+        }
+        System.out.println();
         for (int y = start.getVertikal(); y < stop.getVertikal(); y++) {
+            if (y<10){
+                System.out.print(' ');
+            }
+            System.out.print(y);
+
             for (int x = start.getHorizontal(); x < stop.getHorizontal(); x++) {
                 System.out.print("|" + crossword.getRaster()[x][y]);
+                if (x>=10){
+                    System.out.print(' ');
+                }
             }
             System.out.println();
         }
