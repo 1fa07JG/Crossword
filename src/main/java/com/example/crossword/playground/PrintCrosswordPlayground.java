@@ -13,60 +13,55 @@ import com.itextpdf.layout.element.Table;
 
 import java.awt.*;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class PrintCrosswordPlayground {
     public static void main(String[] args) throws IOException {
-        Crossword cw = new Crossword();
-        cw.exampleSetup();
-        //getAnswerRaster();
-        //PrintCrosswordPlayground printCrossword = new PrintCrosswordPlayground();
-        //printCrossword.producePdfCrossword(cw, "");
-        printFieldWithLimits(new Coordinates(0, 0), new Coordinates(60, 20), cw);
-        System.out.println("Spalte dreißig is leer: " + columnIsEmpty(cw.getRaster(), 30));
-        System.out.println("Spalte elf is leer: " + columnIsEmpty(cw.getRaster(), 11));
-        System.out.println("Start Char Y: " + findStartY(cw));
-        System.out.println("Start Char X: " + findStartX(cw));
-        System.out.println("Stop Char Y: " + findStopY(cw));
-        System.out.println("Stop Char X: " + findStopX(cw));
-        printFieldWithLimits(getStartCoordinates(cw), getStopCoordinates(cw), cw);
-        producePdfCrossword(cw, "");
+        Crossword.exampleSetup();
+        printFieldWithLimits(new Coordinates(0, 0), new Coordinates(60, 20));
+        System.out.println("Spalte dreißig is leer: " + columnIsEmpty(Crossword.getRaster(), 30));
+        System.out.println("Spalte elf is leer: " + columnIsEmpty(Crossword.getRaster(), 11));
+        System.out.println("Start Char Y: " + findStartY());
+        System.out.println("Start Char X: " + findStartX());
+        System.out.println("Stop Char Y: " + findStopY());
+        System.out.println("Stop Char X: " + findStopX());
+        printFieldWithLimits(getStartCoordinates(), getStopCoordinates());
+        producePdfCrossword("");
     }
 
-    public static Coordinates getStartCoordinates(Crossword cw) {
-        return new Coordinates(findStartX(cw), findStartY(cw));
+    public static Coordinates getStartCoordinates() {
+        return new Coordinates(findStartX(), findStartY());
     }
 
-    public static Coordinates getStopCoordinates(Crossword cw) {
-        return new Coordinates(findStopX(cw), findStopY(cw));
+    public static Coordinates getStopCoordinates() {
+        return new Coordinates(findStopX(), findStopY());
     }
 
 
-    public static int findStartY(Crossword crossword) {
-        char[][] table = crossword.getRaster();
-        for (int i = 0; i < crossword.getHeight(); i++) {
+    public static int findStartY() {
+        char[][] table = Crossword.getRaster();
+        for (int i = 0; i < Crossword.getHeight(); i++) {
             if (rowIsEmpty(table, i)) {
                 return i;
             }
         }
-        return crossword.getHeight();
+        return Crossword.getHeight();
     }
 
-    public static int findStartX(Crossword crossword) {
-        char[][] table = crossword.getRaster();
-        for (int i = 0; i < crossword.getWidth(); i++) {
+    public static int findStartX() {
+        char[][] table = Crossword.getRaster();
+        for (int i = 0; i < Crossword.getWidth(); i++) {
             if (!columnIsEmpty(table, i)) {
                 return i;
             }
         }
-        return crossword.getWidth();
+        return Crossword.getWidth();
     }
 
-    public static int findStopY(Crossword crossword) {
+    public static int findStopY() {
         int temporaryColumnIndex = 0;
-        char[][] table = crossword.getRaster();
-        for (int i = 0; i < crossword.getHeight(); i++) {
+        char[][] table = Crossword.getRaster();
+        for (int i = 0; i < Crossword.getHeight(); i++) {
             if (rowIsEmpty(table, i)) {
                 temporaryColumnIndex = i;
             }
@@ -74,10 +69,10 @@ public class PrintCrosswordPlayground {
         return temporaryColumnIndex;
     }
 
-    public static int findStopX(Crossword crossword) {
+    public static int findStopX() {
         int temporaryRowIndex = 0;
-        char[][] table = crossword.getRaster();
-        for (int i = 0; i < crossword.getWidth(); i++) {
+        char[][] table = Crossword.getRaster();
+        for (int i = 0; i < Crossword.getWidth(); i++) {
             if (!columnIsEmpty(table, i)) {
                 temporaryRowIndex = i;
             }
@@ -87,13 +82,13 @@ public class PrintCrosswordPlayground {
 
     //finde end und start koordinaten mit methoden
 
-    private static void fillTable(Crossword cw, Table table, boolean printLetters) {
+    private static void fillTable(Table table, boolean printLetters) {
 
-        for (int y = findStartY(cw); y < findStopY(cw); y++) {
+        for (int y = findStartY(); y < findStopY(); y++) {
 
-            for (int x = findStartX(cw); x < findStopX(cw); x++) {
+            for (int x = findStartX(); x < findStopX(); x++) {
                 //table.addCell(String.valueOf(menu)+String.valueOf(i+y));
-                if (cw.getRaster()[x][y] == ' ') {
+                if (Crossword.getRaster()[x][y] == ' ') {
                     Cell cellMenu = new Cell();   // Creating a cell
                     String paraMenu = " ";
                     Paragraph paragraph10 = new Paragraph(paraMenu);
@@ -104,7 +99,7 @@ public class PrintCrosswordPlayground {
                     table.addCell(cellMenu);
                 } else {
                     if (printLetters) {
-                        table.addCell(String.valueOf(cw.getRaster()[x][y]));
+                        table.addCell(String.valueOf(Crossword.getRaster()[x][y]));
                     } else {
                         table.addCell(" ");
                     }
@@ -115,7 +110,7 @@ public class PrintCrosswordPlayground {
         }
     }
 
-    public static void printFieldWithLimits(Coordinates start, Coordinates stop, Crossword crossword) {
+    public static void printFieldWithLimits(Coordinates start, Coordinates stop) {
 // Koordinaten zwangsweise an die Größe des Felds anpassen.
         System.out.print("  ");
         for (int x = start.getHorizontal(); x < stop.getHorizontal(); x++) {
@@ -130,7 +125,7 @@ public class PrintCrosswordPlayground {
             System.out.print(y);
 
             for (int x = start.getHorizontal(); x < stop.getHorizontal(); x++) {
-                System.out.print("|" + crossword.getRaster()[x][y]);
+                System.out.print("|" + Crossword.getRaster()[x][y]);
                 if (x >= 10) {
                     System.out.print(' ');
                 }
@@ -141,9 +136,9 @@ public class PrintCrosswordPlayground {
 
 
     public static boolean rowIsEmpty(char[][] table, int rowIndex) {
-        for (int columnIndex = 0; columnIndex < table.length; columnIndex++) {
+        for (char[] chars : table) {
             //       SPALTE, ZEILE
-            if (table[columnIndex][rowIndex] != ' ') {
+            if (chars[rowIndex] != ' ') {
                 return true;
             }
         }
@@ -159,7 +154,7 @@ public class PrintCrosswordPlayground {
         return true;
     }
 
-    public static void producePdfCrossword(Crossword cw, String dest) throws IOException {
+    public static void producePdfCrossword(String dest) throws IOException {
 
         //cw.raster = trimTable(cw.raster);
         Crossword.printField();//wird behalten um fehler finden zu können
@@ -177,11 +172,11 @@ public class PrintCrosswordPlayground {
         Document document = new Document(pdfDoc);
 
 
-        float[] pointColumnWidths = new float[findStopX(cw) - findStartX(cw)];
+        float[] pointColumnWidths = new float[findStopX() - findStartX()];
 
         Table table = new Table(pointColumnWidths);
 
-        fillTable(cw, table, true);
+        fillTable(table, true);
 
         document.add(table);
         document.close();
