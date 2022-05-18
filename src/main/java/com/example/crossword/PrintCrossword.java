@@ -76,35 +76,12 @@ public class PrintCrossword {
         for (int y = Helper.findStartY(); y < Helper.findStopY(); y++) {
 
             for (int x = Helper.findStartX(); x < Helper.findStopX(); x++) {
-                //table.addCell(String.valueOf(menu)+String.valueOf(i+y));
                 if (Crossword.getRaster()[x][y] == ' ') {
-                    Cell charCell = new Cell();   // Creating a cell
-                    String paraMenu = " ";
-                    Paragraph paragraph10 = new Paragraph(paraMenu);
-                    charCell.add(paragraph10);// Adding content to the cell
-                    charCell.setWidth(20F);
-                    charCell.setHeight(20F);
-                    charCell.setBackgroundColor(ColorConstants.GRAY);
-                    table.addCell(charCell);
+                    table.addCell(createEmptyCell());
+                } else if (printLetters) {
+                    table.addCell(String.valueOf(Crossword.getRaster()[x][y]));
                 } else {
-                    if (printLetters) {
-                        table.addCell(String.valueOf(Crossword.getRaster()[x][y]));
-                    } else {
-                        String content = "";
-                        for (int i = 0; i < PlayerApplication.getQuestionList().length; i++) {
-                            if ((PlayerApplication.getQuestionList()[i].getStartingPosition().getHorizontal() == x && PlayerApplication.getQuestionList()[i].getStartingPosition().getVertikal() == y)) {
-                                content = content + (i + 1);
-                                if (PlayerApplication.getQuestionList()[i].isHorizontal == true) {
-                                    content = content + "> ";
-                                } else {
-                                    content = content + "v ";
-                                }
-                            }
-                        }
-                        Paragraph wordFieldParagraph = new Paragraph(content);
-                        wordFieldParagraph.setFontSize(7);
-                        table.addCell(wordFieldParagraph);
-                    }
+                    table.addCell(createCustomerCell(y, x));
                 }
 
 
@@ -112,6 +89,34 @@ public class PrintCrossword {
 
         }
         document.add(table);
+    }
+
+    private static Paragraph createCustomerCell(int y, int x) {
+        String content = "";
+        for (int i = 0; i < PlayerApplication.getQuestionList().length; i++) {
+            if ((PlayerApplication.getQuestionList()[i].getStartingPosition().getHorizontal() == x && PlayerApplication.getQuestionList()[i].getStartingPosition().getVertikal() == y)) {
+                content = content + (i + 1);
+                if (PlayerApplication.getQuestionList()[i].isHorizontal == true) {
+                    content = content + "> ";
+                } else {
+                    content = content + "v ";
+                }
+            }
+        }
+        Paragraph wordFieldParagraph = new Paragraph(content);
+        wordFieldParagraph.setFontSize(5);
+        return wordFieldParagraph;
+    }
+
+    private static Cell createEmptyCell() {
+        Cell charCell = new Cell();   // Creating a cell
+        String paraMenu = " ";
+        Paragraph paragraph10 = new Paragraph(paraMenu);
+        charCell.add(paragraph10);// Adding content to the cell
+        charCell.setWidth(20F);
+        charCell.setHeight(20F);
+        charCell.setBackgroundColor(ColorConstants.GRAY);
+        return charCell;
     }
 
     public static String giveQuestionList() {
