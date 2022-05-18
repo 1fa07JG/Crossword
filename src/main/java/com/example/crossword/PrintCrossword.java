@@ -33,7 +33,7 @@ public class PrintCrossword {
         Document document = new Document(pdfDoc);
 
 
-        fillTable(document, false);
+        fillTable(document, true);
         Paragraph questionParagraph = new Paragraph(PrintCrossword.giveQuestionList());
 
         document.add(questionParagraph);
@@ -69,13 +69,13 @@ public class PrintCrossword {
     }
 
     public static void fillTable(Document document, boolean printLetters) {
-        float[] pointColumnWidths = new float[Helper.findStopX() - Helper.findStartX()];
+        float[] pointColumnWidths = new float[Helper.findStopX() - Helper.findStartX() + 1];
 
         Table table = new Table(pointColumnWidths);
 
-        for (int y = Helper.findStartY(); y < Helper.findStopY(); y++) {
+        for (int y = Helper.findStartY(); y <= Helper.findStopY(); y++) {
 
-            for (int x = Helper.findStartX(); x < Helper.findStopX(); x++) {
+            for (int x = Helper.findStartX(); x <= Helper.findStopX(); x++) {
                 if (Crossword.getRaster()[x][y] == ' ') {
                     table.addCell(createEmptyCell());
                 } else if (printLetters) {
