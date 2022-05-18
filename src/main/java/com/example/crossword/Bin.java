@@ -113,4 +113,17 @@ public class Bin {
         }
         document.add(table);
     }
+
+    //this methode could be used if a gui is added
+    public static void getAnswerRaster() {
+        for (int y = 0; y < Crossword.height; y++) {
+            for (int x = 0; x < Crossword.width; x++) {
+                if (Crossword.raster[x][y] != ' ') {
+                    PlayerApplication.answerRaster[x][y] = '_';
+                }
+            }
+
+        }
+
+    }
 }
