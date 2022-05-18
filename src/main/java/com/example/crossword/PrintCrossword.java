@@ -12,6 +12,7 @@ import com.itextpdf.layout.element.Table;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
+import java.util.Objects;
 
 public class PrintCrossword {
     public static void producePdfCrossword(String dest) throws IOException {
@@ -26,13 +27,13 @@ public class PrintCrossword {
 
         // Creating a PdfDocument
         PdfDocument pdfDoc = new PdfDocument(writer);
-        pdfDoc.setDefaultPageSize(PageSize.A3.rotate());
+        pdfDoc.setDefaultPageSize(PageSize.A4.rotate());
 
         pdfDoc.addNewPage();
         Document document = new Document(pdfDoc);
 
 
-        fillTable(document, true);
+        fillTable(document, false);
 
 
         document.close();
@@ -87,12 +88,19 @@ public class PrintCrossword {
                     if (printLetters) {
                         table.addCell(String.valueOf(Crossword.getRaster()[x][y]));
                     } else {
-                        table.addCell(" ");
+                        String content = "";
+                        for (int i = 0; i < PlayerApplication.getQuestionList().length; i++) {
+                            if ((PlayerApplication.getQuestionList()[i].getStartingPosition().getHorizontal() == x && PlayerApplication.getQuestionList()[i].getStartingPosition().getVertikal() == y)) {
+                                content = content + (i + 1);
+                            }
+                        }
+                        table.addCell(content);
                     }
                 }
 
 
             }
+
         }
         document.add(table);
     }

@@ -89,10 +89,10 @@ public class PrintCrosswordPlayground {
     }
 
     public static String giveQuestionList() {
-        String questionList = "";
+        String questionList = "\n";
         Question[] questionArray = PlayerApplication.getQuestionList();
         for (int i = 0; i < questionArray.length; i++) {
-            questionList = questionList + (i + 1) + ". " + questionArray[i].toString() + "\n";
+            questionList = questionList + (i + 1) + ". " + questionArray[i].getQuestion() + " ?\n";
         }
         return questionList;
     }
