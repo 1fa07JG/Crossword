@@ -10,7 +10,6 @@ public class Crossword {
     static char[][] raster = new char[width][height];  // x (horizontal) / y (vertikal); 0/0 ist links oben
 
 
-
     public static int getWidth() {
         return width;
     }
@@ -103,7 +102,7 @@ public class Crossword {
             raster[x + i][y] = s.charAt(i);
         }
 
-
+        addQuestion(s);
         return true;
     }
 
@@ -128,7 +127,7 @@ public class Crossword {
             raster[x][y + i] = s.charAt(i);
         }
 
-
+        addQuestion(s);
         return true;
 
     }
@@ -171,6 +170,10 @@ public class Crossword {
         return -1;
     }
 
+    private static void addQuestion(String anwser){
+        PlayerApplication.questionArrayList.add(new Question(anwser));
+    }
+
     private static Coordinates[] findConnectionInRaster(String s) {
         ArrayList<Coordinates> letterCoordinates = new ArrayList<>();
         //eventual mit Ausgangs Koordinaten versehen und als fehler negative Koordinaten zurückgeben
@@ -180,7 +183,6 @@ public class Crossword {
                 letterCoordinates.add(cord);
             }
         }
-
         Coordinates[] answerCoordinates = new Coordinates[]{};
         answerCoordinates = letterCoordinates.toArray(answerCoordinates);
         return answerCoordinates;
