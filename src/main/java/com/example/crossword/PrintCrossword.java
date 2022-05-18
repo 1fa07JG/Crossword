@@ -95,7 +95,7 @@ public class PrintCrossword {
         for (int i = 0; i < PlayerApplication.getQuestionList().length; i++) {
             if ((PlayerApplication.getQuestionList()[i].getStartingPosition().getHorizontal() == x && PlayerApplication.getQuestionList()[i].getStartingPosition().getVertikal() == y)) {
                 content = content + (i + 1);
-                if (PlayerApplication.getQuestionList()[i].isHorizontal == true) {
+                if (PlayerApplication.getQuestionList()[i].isHorizontal) {
                     content = content + "> ";
                 } else {
                     content = content + "v ";
