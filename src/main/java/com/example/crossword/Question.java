@@ -57,10 +57,6 @@ public class Question {
         return anwser;
     }
 
-    public void setQuestion(String question) {
-        this.question = question;
-    }
-
     public Coordinates getStartingPosition() {
         return startingPosition;
     }

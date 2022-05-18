@@ -21,10 +21,6 @@ public class PlayerApplication {
 
     }
 
-    public static ArrayList<Question> getQuestionArrayList() {
-        return questionArrayList;
-    }
-
     public static Question[] getQuestionList() {
         questionList = new Question[questionArrayList.toArray().length];
         for (int i = 0; i < questionList.length; i++) {
@@ -33,11 +29,6 @@ public class PlayerApplication {
         return questionList;
     }
 
-
-    public static boolean setWordBeginings() {
-
-        return false;
-    }
 
     public static void getAnwserRaster() {
         for (int y = 0; y < Crossword.height; y++) {
@@ -48,6 +39,6 @@ public class PlayerApplication {
             }
 
         }
-        setWordBeginings();
+
     }
 }
