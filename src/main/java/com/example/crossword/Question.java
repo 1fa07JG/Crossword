@@ -4,13 +4,13 @@ import java.util.Arrays;
 
 public class Question {
     public String question;
-    public String anwser;
+    public String answer;
     public Coordinates startingPosition;
     public boolean isHorizontal;
 
     public Question(String q, String a) {
         question = q;
-        anwser = a;
+        answer = a;
         startingPosition = findWord(a);
     }
 
@@ -22,30 +22,30 @@ public class Question {
         isHorizontal = horizontal;
     }
 
-    public Question(String anwser, String question, Coordinates startingPosition, boolean horziontal) {
+    public Question(String answer, String question, Coordinates startingPosition, boolean horizontal) {
         this.question = question;
-        this.anwser = anwser;
+        this.answer = answer;
         this.startingPosition = startingPosition;
-        this.isHorizontal = horziontal;
+        this.isHorizontal = horizontal;
     }
 
-    public Question(String anwser, String question, Coordinates startingPosition) {
+    public Question(String answer, String question, Coordinates startingPosition) {
         this.question = question;
-        this.anwser = anwser;
+        this.answer = answer;
         this.startingPosition = startingPosition;
     }
 
     public Question(String a) {
-        anwser = a;
+        answer = a;
         startingPosition = findWord(a);
     }
 
-    public void setAnwser(String anwser) {
-        this.anwser = anwser;
+    public void setAnswer(String answer) {
+        this.answer = answer;
     }
 
-    public Question(String anwser, Coordinates startingPosition) {
-        this.anwser = anwser;
+    public Question(String answer, Coordinates startingPosition) {
+        this.answer = answer;
         this.startingPosition = startingPosition;
     }
 
@@ -53,8 +53,8 @@ public class Question {
         return question;
     }
 
-    public String getAnwser() {
-        return anwser;
+    public String getAnswer() {
+        return answer;
     }
 
     public Coordinates getStartingPosition() {
@@ -62,12 +62,11 @@ public class Question {
     }
 
 
-
     @Override
     public String toString() {
         return "Question{" +
                 "question='" + question + '\'' +
-                ", anwser='" + anwser + '\'' +
+                ", answer='" + answer + '\'' +
                 ", startingPosition=" + startingPosition +
                 '}';
     }

@@ -35,7 +35,7 @@ public class Crossword {
     public static void exampleSetup() {
         initializeField();
 
-        setWordHorizontally(new Question("Sherlock", "The Worlds most Famous fictonal Detective (Firstname)", new Coordinates(30, 12)));
+        setWordHorizontally(new Question("Sherlock", "The Worlds most Famous fictional Detective (Firstname)", new Coordinates(30, 12)));
         setWordToWord("ship", "Corvette, Tug, Frigate");
         setWordToWord("Watson", "The Surname of a Lead character played by Martin Freeman in a 2010 crime drama ");
 
@@ -44,6 +44,11 @@ public class Crossword {
         setWordToWord("Zabbix", "Infrastructure monitoring software first Released in 2001");
         setWordToWord("Year", "A unit to measure Time defined by Pope Gregor the XIII");
         setWordToWord("Waal", " municipality in the district of Ostallgäu in Bavaria");
+        setWordToWord("hex", "short for Hexadecimal");
+        //setWordVertically(new Question("First", "Translation of the latin number I. into words", new Coordinates(1, 1)));
+        //setWordHorizontally(new Question("end", "ende in englisch", new Coordinates(57, 19)));
+
+
     }
 
     private static void initializeField() {
@@ -84,8 +89,8 @@ public class Crossword {
     public static boolean setWordHorizontally(Question question) {
 
         Coordinates cor = question.getStartingPosition();
-        question.setAnwser(question.getAnwser().toUpperCase());
-        String s = question.getAnwser();
+        question.setAnswer(question.getAnswer().toUpperCase());
+        String s = question.getAnswer();
         int x = cor.horizontal;
         int y = cor.vertikal;
 
@@ -110,8 +115,8 @@ public class Crossword {
     }
 
     public static boolean setWordVertically(Question question) {
-        question.setAnwser(question.getAnwser().toUpperCase());
-        String s = question.getAnwser();
+        question.setAnswer(question.getAnswer().toUpperCase());
+        String s = question.getAnswer();
         Coordinates cor = question.getStartingPosition();
         s = s.toUpperCase();
         int x = cor.horizontal;

@@ -59,29 +59,29 @@ public class Bin {
     }
 
     public static char[][] deleteOneRow(char[][] table, int toDeleteIndex) {
-        char[][] shortend = new char[table.length - 1][table[0].length];
+        char[][] shortened = new char[table.length - 1][table[0].length];
         int index = 0;
         for (int i = 0; i < table.length - 1; i++) {
             if (i == toDeleteIndex) {
                 index++;
             }
-            shortend[i] = table[index];
+            shortened[i] = table[index];
             index++;
         }
-        return shortend;
+        return shortened;
     }
 
-    public static char[][] deleteOneColumm(char[][] table, int toDeleteIndex) {
-        char[][] shortend = new char[table.length][table[0].length - 1];
+    public static char[][] deleteOneColumn(char[][] table, int toDeleteIndex) {
+        char[][] shortened = new char[table.length][table[0].length - 1];
         int index = 0;
         for (int i = 0; i < table[0].length; i++) {
             if (i == toDeleteIndex) {
                 index++;
             }
-            shortend[i] = table[index];
+            shortened[i] = table[index];
             index++;
         }
-        return shortend;
+        return shortened;
     }
 
     static void fillTable(Document document, boolean printLetters) {
