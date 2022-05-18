@@ -1,9 +1,6 @@
 package com.example.crossword.playground;
 
-import com.example.crossword.Coordinates;
-import com.example.crossword.Crossword;
-import com.example.crossword.Helper;
-import com.example.crossword.Question;
+import com.example.crossword.*;
 import com.itextpdf.kernel.colors.ColorConstants;
 import com.itextpdf.kernel.geom.PageSize;
 import com.itextpdf.kernel.pdf.PdfDocument;
@@ -91,6 +88,15 @@ public class PrintCrosswordPlayground {
         document.add(table);
     }
 
+    public static String giveQuestionList() {
+        String questionList = "";
+        Question[] questionArray = PlayerApplication.getQuestionList();
+        for (int i = 0; i < questionArray.length; i++) {
+            questionList = questionList + (i + 1) + ". " + questionArray[i].toString() + "\n";
+        }
+        return questionList;
+    }
+
 
     public static boolean rowIsEmpty(char[][] table, int rowIndex) {
         for (char[] chars : table) {
@@ -131,6 +137,9 @@ public class PrintCrosswordPlayground {
 
         fillTable(document, true);
 
+        Paragraph questionParagraph = new Paragraph(giveQuestionList());
+
+        document.add(questionParagraph);
 
         document.close();
 

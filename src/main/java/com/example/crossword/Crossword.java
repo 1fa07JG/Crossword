@@ -35,15 +35,15 @@ public class Crossword {
     public static void exampleSetup() {
         initializeField();
 
-        setWordHorizontally(new Question("Sherlock","", new Coordinates(30, 12)));
-        setWordToWord("ship");
-        setWordToWord("Watson");
+        setWordHorizontally(new Question("Sherlock", "The Worlds most Famous fictonal Detective (Firstname)", new Coordinates(30, 12)));
+        setWordToWord("ship", "Corvette, Tug, Frigate");
+        setWordToWord("Watson", "The Surname of a Lead character played by Martin Freeman in a 2010 crime drama ");
 
-        setWordToWord("water");
-        setWordToWord("London");
-        setWordToWord("Zabbix");
-        setWordToWord("Year");
-        setWordToWord("Waal");
+        setWordToWord("water", "primordial element according to Thales of Miletus");
+        setWordToWord("London", "City near the County of Essex");
+        setWordToWord("Zabbix", "Infrastructure monitoring software first Released in 2001");
+        setWordToWord("Year", "A unit to measure Time defined by Pope Gregor the XIII");
+        setWordToWord("Waal", " municipality in the district of Ostallgäu in Bavaria");
     }
 
     private static void initializeField() {
@@ -58,34 +58,34 @@ public class Crossword {
     }
 
 
-    public static void setWordToWord(String s) {
+    public static void setWordToWord(String answer, String question) {
         //buchstabe finden herausfinden, wo das einzugebende wort beginnen soll.
         //es wäre möglich anstelle der Vorschleife mit einer math. Random funktion zu arbeiten
 
-        s = s.toUpperCase();
-        Coordinates[] connectionCoordinates = findConnectionInRaster(s);
+        answer = answer.toUpperCase();
+        Coordinates[] connectionCoordinates = findConnectionInRaster(answer);
 
         boolean success = false;
         for (int i = 0; i < connectionCoordinates.length && !success; i++) {
             Coordinates cor = connectionCoordinates[i];
 
 
-            int letterIndex = indexOfLetterInWord(s, raster[cor.horizontal][cor.vertikal]);
+            int letterIndex = indexOfLetterInWord(answer, raster[cor.horizontal][cor.vertikal]);
             if (wordIsHorizontal(cor)) {
-                success = setWordVertically(new Question(s,"", new Coordinates(cor.horizontal, cor.vertikal - letterIndex)));
+                success = setWordVertically(new Question(answer, question, new Coordinates(cor.horizontal, cor.vertikal - letterIndex)));
             } else {
-                success = setWordHorizontally(new Question(s,"", new Coordinates(cor.horizontal - letterIndex, cor.vertikal)));
+                success = setWordHorizontally(new Question(answer, question, new Coordinates(cor.horizontal - letterIndex, cor.vertikal)));
             }
 
         }
     }
 
 
-    public static boolean setWordHorizontally(Question question ) {
+    public static boolean setWordHorizontally(Question question) {
 
-        Coordinates cor=question.getStartingPosition();
+        Coordinates cor = question.getStartingPosition();
         question.setAnwser(question.getAnwser().toUpperCase());
-        String s=question.getAnwser();
+        String s = question.getAnwser();
         int x = cor.horizontal;
         int y = cor.vertikal;
 
@@ -105,14 +105,14 @@ public class Crossword {
             raster[x + i][y] = s.charAt(i);
         }
 
-        addQuestion(s, cor);
+        addQuestion(question);
         return true;
     }
 
-    public static boolean setWordVertically(Question question ) {
+    public static boolean setWordVertically(Question question) {
         question.setAnwser(question.getAnwser().toUpperCase());
-        String s=question.getAnwser();
-        Coordinates cor=question.getStartingPosition();
+        String s = question.getAnwser();
+        Coordinates cor = question.getStartingPosition();
         s = s.toUpperCase();
         int x = cor.horizontal;
         int y = cor.vertikal;
@@ -133,7 +133,7 @@ public class Crossword {
             raster[x][y + i] = s.charAt(i);
         }
 
-        addQuestion(s, cor);
+        addQuestion(question);
         return true;
 
     }
@@ -176,8 +176,8 @@ public class Crossword {
         return -1;
     }
 
-    private static void addQuestion(String anwser, Coordinates startingPoint) {
-        PlayerApplication.questionArrayList.add(new Question(anwser, startingPoint));
+    private static void addQuestion(Question q) {
+        PlayerApplication.questionArrayList.add(q);
     }
 
     private static Coordinates[] findConnectionInRaster(String s) {
