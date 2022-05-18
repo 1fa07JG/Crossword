@@ -17,7 +17,7 @@ import java.io.IOException;
 public class PrintCrosswordPlayground {
     public static void main(String[] args) throws IOException {
         Crossword.exampleSetup();
-        printFieldWithLimits(new Coordinates(0, 0), new Coordinates(60, 20));
+        printFieldWithLimits(new Coordinates(0, 0), new Coordinates(59, 19));
         System.out.println("Spalte dreißig is leer: " + columnIsEmpty(Crossword.getRaster(), 30));
         System.out.println("Spalte elf is leer: " + columnIsEmpty(Crossword.getRaster(), 11));
         System.out.println("Start Char Y: " + Helper.findStartY());
@@ -35,18 +35,18 @@ public class PrintCrosswordPlayground {
     public static void printFieldWithLimits(Coordinates start, Coordinates stop) {
 // Koordinaten zwangsweise an die Größe des Felds anpassen.
         System.out.print("  ");
-        for (int x = start.getHorizontal(); x < stop.getHorizontal(); x++) {
+        for (int x = start.getHorizontal(); x <= stop.getHorizontal(); x++) {
             System.out.print("|" + x);
 
         }
         System.out.println();
-        for (int y = start.getVertikal(); y < stop.getVertikal(); y++) {
+        for (int y = start.getVertikal(); y <= stop.getVertikal(); y++) {
             if (y < 10) {
                 System.out.print(' ');
             }
             System.out.print(y);
 
-            for (int x = start.getHorizontal(); x < stop.getHorizontal(); x++) {
+            for (int x = start.getHorizontal(); x <= stop.getHorizontal(); x++) {
                 System.out.print("|" + Crossword.getRaster()[x][y]);
                 if (x >= 10) {
                     System.out.print(' ');
@@ -57,13 +57,13 @@ public class PrintCrosswordPlayground {
     }
 
     private static void fillTable(Document document, boolean printLetters) {
-        float[] pointColumnWidths = new float[Helper.findStopX() - Helper.findStartX()];
+        float[] pointColumnWidths = new float[Helper.findStopX() - Helper.findStartX() + 1];
 
         Table table = new Table(pointColumnWidths);
 
-        for (int y = Helper.findStartY(); y < Helper.findStopY(); y++) {
+        for (int y = Helper.findStartY(); y <= Helper.findStopY(); y++) {
 
-            for (int x = Helper.findStartX(); x < Helper.findStopX(); x++) {
+            for (int x = Helper.findStartX(); x <= Helper.findStopX(); x++) {
                 //table.addCell(String.valueOf(menu)+String.valueOf(i+y));
                 if (Crossword.getRaster()[x][y] == ' ') {
                     Cell cellMenu = new Cell();   // Creating a cell

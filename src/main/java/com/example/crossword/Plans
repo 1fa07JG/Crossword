@@ -4,3 +4,9 @@ Index zu ersetzen) der den ersten buchstaben mit der Weiter unter Ausgedruckten 
 Funktionales Kreuzworträtsel zu erzeugen
 
 Question wird mit hinzufügen des Wortes zur Liste Hinzugefügt
+
+neuer Bug in print with limits wird beim vollständigen ausdrucken durch die Änderung der
+Limits eine Array out of bonds exception ausgelöst dafür könnte eine Lösunge gesucht werden
+
+erledigt
+
