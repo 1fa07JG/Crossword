@@ -82,8 +82,7 @@ public class PrintCrossword {
                 } else {
                     table.addCell(createCustomerCell(y, x));
                 }
-
-
+                
             }
 
         }
