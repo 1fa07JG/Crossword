@@ -94,9 +94,16 @@ public class PrintCrossword {
                         for (int i = 0; i < PlayerApplication.getQuestionList().length; i++) {
                             if ((PlayerApplication.getQuestionList()[i].getStartingPosition().getHorizontal() == x && PlayerApplication.getQuestionList()[i].getStartingPosition().getVertikal() == y)) {
                                 content = content + (i + 1);
+                                if (PlayerApplication.getQuestionList()[i].isHorizontal == true) {
+                                    content = content + "> ";
+                                } else {
+                                    content = content + "v ";
+                                }
                             }
                         }
-                        table.addCell(content);
+                        Paragraph wordFieldParagraph = new Paragraph(content);
+                        wordFieldParagraph.setFontSize(7);
+                        table.addCell(wordFieldParagraph);
                     }
                 }
 
