@@ -33,7 +33,7 @@ public class PrintCrossword {
         Document document = new Document(pdfDoc);
 
 
-        fillTable(document, true);
+        fillTable(document, false);
         Paragraph questionParagraph = new Paragraph(PrintCrossword.giveQuestionList());
 
         document.add(questionParagraph);
