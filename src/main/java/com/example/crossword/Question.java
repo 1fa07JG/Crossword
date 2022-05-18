@@ -18,7 +18,23 @@ public class Question {
         startingPosition = findWord(a);
     }
 
+
+    public Question(String anwser, Coordinates startingPosition) {
+        this.anwser = anwser;
+        this.startingPosition = startingPosition;
+    }
+
+    @Override
+    public String toString() {
+        return "Question{" +
+                "question='" + question + '\'' +
+                ", anwser='" + anwser + '\'' +
+                ", startingPosition=" + startingPosition +
+                '}';
+    }
+
     public static Coordinates findWord(String s) {
+        //findet bestimmte worte nicht z.b. WAAL SHIP und LONDON
         char firstChar = s.charAt(0);
         Coordinates wordBeginning;
         for (int y = 0; y < Crossword.getHeight(); y++) {
