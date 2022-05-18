@@ -14,14 +14,6 @@ public class Question {
         startingPosition = findWord(a);
     }
 
-    public boolean isHorizontal() {
-        return isHorizontal;
-    }
-
-    public void setHorizontal(boolean horizontal) {
-        isHorizontal = horizontal;
-    }
-
     public Question(String answer, String question, Coordinates startingPosition, boolean horizontal) {
         this.question = question;
         this.answer = answer;
@@ -40,35 +32,9 @@ public class Question {
         startingPosition = findWord(a);
     }
 
-    public void setAnswer(String answer) {
-        this.answer = answer;
-    }
-
     public Question(String answer, Coordinates startingPosition) {
         this.answer = answer;
         this.startingPosition = startingPosition;
-    }
-
-    public String getQuestion() {
-        return question;
-    }
-
-    public String getAnswer() {
-        return answer;
-    }
-
-    public Coordinates getStartingPosition() {
-        return startingPosition;
-    }
-
-
-    @Override
-    public String toString() {
-        return "Question{" +
-                "question='" + question + '\'' +
-                ", answer='" + answer + '\'' +
-                ", startingPosition=" + startingPosition +
-                '}';
     }
 
     public static Coordinates findWord(String s) {
@@ -96,5 +62,39 @@ public class Question {
 
         }
         return null;
+    }
+    //getter und Setter:
+
+    public boolean isHorizontal() {
+        return isHorizontal;
+    }
+
+    public void setHorizontal(boolean horizontal) {
+        isHorizontal = horizontal;
+    }
+
+    public String getQuestion() {
+        return question;
+    }
+
+    public String getAnswer() {
+        return answer;
+    }
+
+    public void setAnswer(String answer) {
+        this.answer = answer;
+    }
+
+    public Coordinates getStartingPosition() {
+        return startingPosition;
+    }
+
+    @Override
+    public String toString() {
+        return "Question{" +
+                "question='" + question + '\'' +
+                ", answer='" + answer + '\'' +
+                ", startingPosition=" + startingPosition +
+                '}';
     }
 }
