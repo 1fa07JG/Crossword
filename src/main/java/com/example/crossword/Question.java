@@ -65,7 +65,7 @@ public class Question {
     }
     //getter und Setter:
 
-    public boolean isHorizontal() {
+    public boolean getIsHorizontal() {
         return isHorizontal;
     }
 
