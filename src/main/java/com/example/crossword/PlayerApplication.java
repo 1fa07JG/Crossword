@@ -24,7 +24,7 @@ public class PlayerApplication {
     public static Question[] getQuestionList() {
         questionList = new Question[questionArrayList.toArray().length];
         for (int i = 0; i < questionList.length; i++) {
-            questionList[i] = new Question(questionArrayList.get(i).getAnswer(), questionArrayList.get(i).getQuestion(), questionArrayList.get(i).getStartingPosition(), questionArrayList.get(i).isHorizontal());
+            questionList[i] = new Question(questionArrayList.get(i).getAnswer(), questionArrayList.get(i).getQuestion(), questionArrayList.get(i).getStartingPosition(), questionArrayList.get(i).getIsHorizontal());
         }
         return questionList;
     }
