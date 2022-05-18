@@ -35,7 +35,7 @@ public class Crossword {
     public static void exampleSetup() {
         initializeField();
 
-        setWordHorizontally("Sherlock", new Coordinates(30, 12));
+        setWordHorizontally(new Question("Sherlock","", new Coordinates(30, 12)));
         setWordToWord("ship");
         setWordToWord("Watson");
 
@@ -72,17 +72,20 @@ public class Crossword {
 
             int letterIndex = indexOfLetterInWord(s, raster[cor.horizontal][cor.vertikal]);
             if (wordIsHorizontal(cor)) {
-                success = setWordVertically(s, new Coordinates(cor.horizontal, cor.vertikal - letterIndex));
+                success = setWordVertically(new Question(s,"", new Coordinates(cor.horizontal, cor.vertikal - letterIndex)));
             } else {
-                success = setWordHorizontally(s, new Coordinates(cor.horizontal - letterIndex, cor.vertikal));
+                success = setWordHorizontally(new Question(s,"", new Coordinates(cor.horizontal - letterIndex, cor.vertikal)));
             }
 
         }
     }
 
 
-    public static boolean setWordHorizontally(String s, Coordinates cor) {
-        s = s.toUpperCase();
+    public static boolean setWordHorizontally(Question question ) {
+
+        Coordinates cor=question.getStartingPosition();
+        question.setAnwser(question.getAnwser().toUpperCase());
+        String s=question.getAnwser();
         int x = cor.horizontal;
         int y = cor.vertikal;
 
@@ -106,7 +109,10 @@ public class Crossword {
         return true;
     }
 
-    public static boolean setWordVertically(String s, Coordinates cor) {
+    public static boolean setWordVertically(Question question ) {
+        question.setAnwser(question.getAnwser().toUpperCase());
+        String s=question.getAnwser();
+        Coordinates cor=question.getStartingPosition();
         s = s.toUpperCase();
         int x = cor.horizontal;
         int y = cor.vertikal;

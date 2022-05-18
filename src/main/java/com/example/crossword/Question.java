@@ -7,22 +7,48 @@ public class Question {
     public String anwser;
     public Coordinates startingPosition;
 
-    Question(String q, String a) {
+    public Question(String q, String a) {
         question = q;
         anwser = a;
         startingPosition = findWord(a);
     }
 
-    Question(String a) {
+    public Question(String anwser,String question,  Coordinates startingPosition) {
+        this.question = question;
+        this.anwser = anwser;
+        this.startingPosition = startingPosition;
+    }
+    public Question(String a) {
         anwser = a;
         startingPosition = findWord(a);
     }
 
+    public void setAnwser(String anwser) {
+        this.anwser = anwser;
+    }
 
     public Question(String anwser, Coordinates startingPosition) {
         this.anwser = anwser;
         this.startingPosition = startingPosition;
     }
+
+    public String getQuestion() {
+        return question;
+    }
+
+    public String getAnwser() {
+        return anwser;
+    }
+
+    public void setQuestion(String question) {
+        this.question = question;
+    }
+
+    public Coordinates getStartingPosition() {
+        return startingPosition;
+    }
+
+
 
     @Override
     public String toString() {
