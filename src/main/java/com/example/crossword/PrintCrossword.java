@@ -12,7 +12,6 @@ import com.itextpdf.layout.element.Table;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
-import java.util.Objects;
 
 public class PrintCrossword {
     public static void producePdfCrossword(String dest) throws IOException {
