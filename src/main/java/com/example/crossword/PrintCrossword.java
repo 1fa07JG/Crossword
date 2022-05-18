@@ -92,10 +92,10 @@ public class PrintCrossword {
 
     private static Paragraph createCustomerCell(int y, int x) {
         StringBuilder content = new StringBuilder();
-        for (int i = 0; i < PlayerApplication.getQuestionList().length; i++) {
-            if ((PlayerApplication.getQuestionList()[i].getStartingPosition().getHorizontal() == x && PlayerApplication.getQuestionList()[i].getStartingPosition().getVertikal() == y)) {
+        for (int i = 0; i < PlayerApplication.createQuestionList().length; i++) {
+            if ((PlayerApplication.createQuestionList()[i].getStartingPosition().getHorizontal() == x && PlayerApplication.createQuestionList()[i].getStartingPosition().getVertikal() == y)) {
                 content.append(i + 1);
-                if (PlayerApplication.getQuestionList()[i].isHorizontal) {
+                if (PlayerApplication.createQuestionList()[i].isHorizontal) {
                     content.append("> ");
                 } else {
                     content.append("v ");
@@ -120,7 +120,7 @@ public class PrintCrossword {
 
     public static String giveQuestionList() {
         StringBuilder questionList = new StringBuilder("\n");
-        Question[] questionArray = PlayerApplication.getQuestionList();
+        Question[] questionArray = PlayerApplication.createQuestionList();
         for (int i = 0; i < questionArray.length; i++) {
             questionList.append(i + 1).append(". ").append(questionArray[i].getQuestion()).append(" ?\n");
         }

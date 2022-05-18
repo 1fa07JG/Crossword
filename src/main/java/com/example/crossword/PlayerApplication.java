@@ -5,9 +5,11 @@ import java.util.ArrayList;
 
 public class PlayerApplication {
     static char[][] answerRaster = new char[Crossword.width][Crossword.height];
-    static Question[] questionList;//=new Question[Crossword.getHeight()*Crossword.getWidth()];
+    static Question[] questionList;
     static ArrayList<Question> questionArrayList = new ArrayList<>();
-    //alternativ kann auch einen Array list verwendet werden die bessere variante muss noch gefunden werden.
+    //es finden sowohl eine Array list als auch ein Array verwendung, um die Vorteile von
+    // beiden nutzen zu können in zukunft wäre anzudenken bei jeder änderung der ArrayList den Array automatisch anzupassen
+    //und somit zu einer Bloßen hilfsmethode des Arrays zu degradieren
 
     public static void main(String[] args) throws IOException {
         Crossword.exampleSetup();
@@ -18,7 +20,7 @@ public class PlayerApplication {
 
     }
 
-    public static Question[] getQuestionList() {
+    public static Question[] createQuestionList() {
         questionList = new Question[questionArrayList.toArray().length];
         for (int i = 0; i < questionList.length; i++) {
             questionList[i] = new Question(questionArrayList.get(i).getAnswer(), questionArrayList.get(i).getQuestion(), questionArrayList.get(i).getStartingPosition(), questionArrayList.get(i).getIsHorizontal());
