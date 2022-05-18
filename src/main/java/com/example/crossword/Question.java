@@ -6,6 +6,7 @@ public class Question {
     public String question;
     public String anwser;
     public Coordinates startingPosition;
+    public boolean isHorizontal;
 
     public Question(String q, String a) {
         question = q;
@@ -13,11 +14,27 @@ public class Question {
         startingPosition = findWord(a);
     }
 
-    public Question(String anwser,String question,  Coordinates startingPosition) {
+    public boolean isHorizontal() {
+        return isHorizontal;
+    }
+
+    public void setHorizontal(boolean horizontal) {
+        isHorizontal = horizontal;
+    }
+
+    public Question(String anwser, String question, Coordinates startingPosition, boolean horziontal) {
+        this.question = question;
+        this.anwser = anwser;
+        this.startingPosition = startingPosition;
+        this.isHorizontal = horziontal;
+    }
+
+    public Question(String anwser, String question, Coordinates startingPosition) {
         this.question = question;
         this.anwser = anwser;
         this.startingPosition = startingPosition;
     }
+
     public Question(String a) {
         anwser = a;
         startingPosition = findWord(a);

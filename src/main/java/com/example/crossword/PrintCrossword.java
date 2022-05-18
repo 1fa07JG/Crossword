@@ -34,7 +34,9 @@ public class PrintCrossword {
 
 
         fillTable(document, false);
+        Paragraph questionParagraph = new Paragraph(PrintCrossword.giveQuestionList());
 
+        document.add(questionParagraph);
 
         document.close();
 
@@ -103,5 +105,14 @@ public class PrintCrossword {
 
         }
         document.add(table);
+    }
+
+    public static String giveQuestionList() {
+        String questionList = "\n";
+        Question[] questionArray = PlayerApplication.getQuestionList();
+        for (int i = 0; i < questionArray.length; i++) {
+            questionList = questionList + (i + 1) + ". " + questionArray[i].getQuestion() + " ?\n";
+        }
+        return questionList;
     }
 }

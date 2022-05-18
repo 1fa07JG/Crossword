@@ -88,15 +88,6 @@ public class PrintCrosswordPlayground {
         document.add(table);
     }
 
-    public static String giveQuestionList() {
-        String questionList = "\n";
-        Question[] questionArray = PlayerApplication.getQuestionList();
-        for (int i = 0; i < questionArray.length; i++) {
-            questionList = questionList + (i + 1) + ". " + questionArray[i].getQuestion() + " ?\n";
-        }
-        return questionList;
-    }
-
 
     public static boolean rowIsEmpty(char[][] table, int rowIndex) {
         for (char[] chars : table) {
@@ -137,7 +128,7 @@ public class PrintCrosswordPlayground {
 
         fillTable(document, true);
 
-        Paragraph questionParagraph = new Paragraph(giveQuestionList());
+        Paragraph questionParagraph = new Paragraph(PrintCrossword.giveQuestionList());
 
         document.add(questionParagraph);
 

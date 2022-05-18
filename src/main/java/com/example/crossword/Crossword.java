@@ -104,7 +104,7 @@ public class Crossword {
         for (int i = 0; i < s.length(); i++) {
             raster[x + i][y] = s.charAt(i);
         }
-
+        question.setHorizontal(true);
         addQuestion(question);
         return true;
     }
@@ -132,7 +132,7 @@ public class Crossword {
         for (int i = 0; i < s.length(); i++) {
             raster[x][y + i] = s.charAt(i);
         }
-
+        question.setHorizontal(false);
         addQuestion(question);
         return true;
 
