@@ -8,16 +8,8 @@ public class Coordinates {
         return horizontal;
     }
 
-    public void setHorizontal(int horizontal) {
-        this.horizontal = horizontal;
-    }
-
     public int getVertikal() {
         return vertikal;
-    }
-
-    public void setVertikal(int vertikal) {
-        this.vertikal = vertikal;
     }
 
     public Coordinates(int x, int y) {
