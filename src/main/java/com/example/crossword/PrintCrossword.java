@@ -14,6 +14,7 @@ import java.io.File;
 import java.io.IOException;
 
 public class PrintCrossword {
+
     public static void producePdfCrossword(String dest) throws IOException {
 
         //cw.raster = trimTable(cw.raster);
@@ -64,13 +65,24 @@ public class PrintCrossword {
                 } else {
                     table.addCell(createCustomerCell(y, x));
                 }
-                
+
             }
 
         }
         document.add(table);
     }
 
+    public static String giveQuestionList() {
+        StringBuilder questionList = new StringBuilder("\n");
+        Question[] questionArray = PlayerApplication.createQuestionList();
+        for (int i = 0; i < questionArray.length; i++) {
+            questionList.append(i + 1).append(". ").append(questionArray[i].getQuestion()).append(" ?\n");
+        }
+        return questionList.toString();
+    }
+
+
+    //Helper für fillTable:
     private static Paragraph createCustomerCell(int y, int x) {
         StringBuilder content = new StringBuilder();
         for (int i = 0; i < PlayerApplication.createQuestionList().length; i++) {
@@ -99,12 +111,5 @@ public class PrintCrossword {
         return charCell;
     }
 
-    public static String giveQuestionList() {
-        StringBuilder questionList = new StringBuilder("\n");
-        Question[] questionArray = PlayerApplication.createQuestionList();
-        for (int i = 0; i < questionArray.length; i++) {
-            questionList.append(i + 1).append(". ").append(questionArray[i].getQuestion()).append(" ?\n");
-        }
-        return questionList.toString();
-    }
+
 }
