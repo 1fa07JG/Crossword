@@ -112,7 +112,7 @@ public class Crossword {
 
     }
 
-    //Helper Methodes for Main
+    //Helper Methods for Main
     private static void initializeField() {
 
         for (int y = 0; y < height; y++) {
