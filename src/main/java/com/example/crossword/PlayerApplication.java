@@ -7,9 +7,10 @@ public class PlayerApplication {
     static char[][] answerRaster = new char[Crossword.width][Crossword.height];
     static Question[] questionList;
     static ArrayList<Question> questionArrayList = new ArrayList<>();
-    //es finden sowohl eine Array list als auch ein Array verwendung, um die Vorteile von
-    // beiden nutzen zu können in zukunft wäre anzudenken bei jeder änderung der
-    // ArrayList den Array automatisch anzupassen und somit zu einer Bloßen hilfsmethode des Arrays zu degradieren
+    //möglichkeiten das Programm wie die Klasse in zukunft aussieht:
+    //1. getQuestionList wieder durch createQuestionList ersetzen dafür wird questionList als variable gelöscht
+    //2. die Array List wird zur lokalen variable die nur zum hinzufügen aus der QuestionList erzeugt wird
+    //3. Keine Verbesserungen im aktuellen zustand belassen
 
     public static void main(String[] args) throws IOException {
         Crossword.exampleSetup();
