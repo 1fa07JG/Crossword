@@ -8,9 +8,9 @@ public class PlayerApplication {
     static Question[] questionList;
     static ArrayList<Question> questionArrayList = new ArrayList<>();
     //möglichkeiten das Programm wie die Klasse in zukunft aussieht:
-    //1. getQuestionList wieder durch createQuestionList ersetzen dafür wird questionList als variable gelöscht
-    //2. die Array List wird zur lokalen variable die nur zum hinzufügen aus der QuestionList erzeugt wird
-    //3. Keine Verbesserungen im aktuellen zustand belassen
+    //1. getQuestionList wieder durch createQuestionList ersetzen dafür wird questionList als variable gelöscht weniger speicher höhere performance bei aufrufen
+    //2. die Array List wird zur lokalen variable die nur zum hinzufügen aus der QuestionList erzeugt wird weniger Speicher höhere Performance beim hinzufügen
+    //3. Keine Verbesserungen im aktuellen zustand belassen doppelte Speicherung
 
     public static void main(String[] args) throws IOException {
         Crossword.exampleSetup();
