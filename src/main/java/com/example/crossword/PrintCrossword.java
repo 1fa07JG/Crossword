@@ -12,6 +12,7 @@ import com.itextpdf.layout.element.Table;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class PrintCrossword {
 
@@ -74,9 +75,10 @@ public class PrintCrossword {
 
     public static String giveQuestionList() {
         StringBuilder questionList = new StringBuilder("\n");
-        Question[] questionArray = PlayerApplication.getQuestionList();
-        for (int i = 0; i < questionArray.length; i++) {
-            questionList.append(i + 1).append(". ").append(questionArray[i].getQuestion()).append(" ?\n");
+
+        ArrayList<Question> questionArrayList = PlayerApplication.questionArrayList;
+        for (int i = 0; i < questionArrayList.size(); i++) {
+            questionList.append(i + 1).append(". ").append(questionArrayList.get(i).getQuestion()).append(" ?\n");
         }
         return questionList.toString();
     }
@@ -84,11 +86,14 @@ public class PrintCrossword {
 
     //Helper für fillTable:
     private static Paragraph createCustomerCell(int y, int x) {
+        ArrayList<Question> questionArrayList = PlayerApplication.questionArrayList;
         StringBuilder content = new StringBuilder();
-        for (int i = 0; i < PlayerApplication.getQuestionList().length; i++) {
-            if ((PlayerApplication.getQuestionList()[i].getStartingPosition().getHorizontal() == x && PlayerApplication.getQuestionList()[i].getStartingPosition().getVertikal() == y)) {
+        for (int i = 0; i < questionArrayList.size(); i++) {
+
+            Question question = PlayerApplication.questionArrayList.get(i);
+            if ((question.getStartingPosition().getHorizontal() == x && question.getStartingPosition().getVertikal() == y)) {
                 content.append(i + 1);
-                if (PlayerApplication.getQuestionList()[i].isHorizontal) {
+                if (question.isHorizontal) {
                     content.append("> ");
                 } else {
                     content.append("v ");

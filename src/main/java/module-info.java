@@ -7,6 +7,6 @@ module com.example.crossword {
     requires layout;
     requires java.desktop;
 
-    opens com.example.crossword to javafx.fxml;
+    opens com.example.crossword to java.base, javafx.fxml;
     exports com.example.crossword;
 }
