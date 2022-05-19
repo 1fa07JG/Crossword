@@ -7,10 +7,12 @@ Question wird mit hinzufügen des Wortes zur Liste Hinzugefügt
 
 neuer Bug in print with limits wird beim vollständigen ausdrucken durch die Änderung der
 Limits eine Array out of bonds exception ausgelöst dafür könnte eine Lösunge gesucht werden
+Crossword muss noch neu sortiert werden
+
 
 erledigt
 
 The methode createAnwserRaster (for Playing with a Gui is in Bin)
 
-Crossword muss noch neu sortiert werden
+enn das wort zu lang für die forgeschlagene stelle ist das wort zufällig hinzufügen
 
