@@ -91,7 +91,8 @@ public class PrintCrossword {
         for (int i = 0; i < questionArrayList.size(); i++) {
 
             Question question = PlayerApplication.questionArrayList.get(i);
-            if ((question.getStartingPosition().getHorizontal() == x && question.getStartingPosition().getVertikal() == y)) {
+            Coordinates startingPosition = question.getStartingPosition();
+            if ((startingPosition.getHorizontal() == x && startingPosition.getVertikal() == y)) {
                 content.append(i + 1);
                 if (question.isHorizontal) {
                     content.append("> ");
