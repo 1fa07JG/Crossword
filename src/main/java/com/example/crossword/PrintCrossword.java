@@ -18,10 +18,10 @@ public class PrintCrossword {
 
     public static void producePdfCrossword(String dest, boolean solution) throws IOException {
         PageSize pageSize = PageSize.A4.rotate();
-        int colummsCount = Helper.findStopX() - Helper.findStartX() + 1;
-        if (colummsCount <= 22) {
+        int columnsCount = Helper.findStopX() - Helper.findStartX() + 1;
+        if (columnsCount <= 22) {
             pageSize = PageSize.A4;
-        } else if (colummsCount >= 40) {
+        } else if (columnsCount >= 40) {
             pageSize = PageSize.A3.rotate();
         }
         Crossword.printField();//wird behalten um fehler finden zu können
@@ -42,7 +42,7 @@ public class PrintCrossword {
         headlineParagraph.setFontSize(18);
         document.add(headlineParagraph);
 
-        fillTable(document, solution);
+        fillTable(document, solution, columnsCount);
         Paragraph questionParagraph = new Paragraph(PrintCrossword.giveQuestionList());
 
         document.add(questionParagraph);
@@ -59,8 +59,8 @@ public class PrintCrossword {
 
     //Helper für producePdfCrossword
 
-    public static void fillTable(Document document, boolean printLetters) {
-        float[] pointColumnWidths = new float[Helper.findStopX() - Helper.findStartX() + 1];
+    public static void fillTable(Document document, boolean printLetters, int columnsCount) {
+        float[] pointColumnWidths = new float[columnsCount];
 
         Table table = new Table(pointColumnWidths);
 
