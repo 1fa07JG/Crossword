@@ -6,8 +6,6 @@ import com.itextpdf.layout.element.Cell;
 import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.layout.element.Table;
 
-import java.util.Arrays;
-
 public class Bin {
 
     public static boolean canAddWordHere(Coordinates cor) {
@@ -45,13 +43,13 @@ public class Bin {
         int rowIndex = table.length;
 
         for (int row = 0; row < rowIndex; row++) {
-            if (PrintCrossword.rowIsEmpty(table, row)) {
+            if (rowIsEmpty(table, row)) {
                 rowIndex = rowIndex - 1;
                 table = deleteOneRow(table, row);
             }
         }
         for (int i = 0; i < table[0].length; i++) {
-            if (PrintCrossword.columnIsEmpty(table, i)) {
+            if (columnIsEmpty(table, i)) {
 
             }
         }
@@ -101,7 +99,7 @@ public class Bin {
                     cellMenu.setBackgroundColor(ColorConstants.GRAY);
                     table.addCell(cellMenu);
                 } else {
-                    if (printLetters == true) {
+                    if (printLetters) {
                         table.addCell(String.valueOf(Crossword.raster[x][y]));
                     } else {
                         table.addCell(" ");
@@ -125,5 +123,24 @@ public class Bin {
 
         }
 
+    }
+
+    public static boolean rowIsEmpty(char[][] table, int rowIndex) {
+        for (char[] chars : table) {
+            //       SPALTE, ZEILE
+            if (chars[rowIndex] != ' ') {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static boolean columnIsEmpty(char[][] table, int columnIndex) {
+        for (int rowIndex = 0; rowIndex < table[0].length; rowIndex++) {
+            if (table[columnIndex][rowIndex] != ' ') {
+                return false;
+            }
+        }
+        return true;
     }
 }

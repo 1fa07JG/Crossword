@@ -47,25 +47,7 @@ public class PrintCrossword {
         System.out.println("crossword.Crossword created");
     }
 
-
-    public static boolean rowIsEmpty(char[][] table, int rowIndex) {
-        for (char[] chars : table) {
-            //       SPALTE, ZEILE
-            if (chars[rowIndex] != ' ') {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public static boolean columnIsEmpty(char[][] table, int columnIndex) {
-        for (int rowIndex = 0; rowIndex < table[0].length; rowIndex++) {
-            if (table[columnIndex][rowIndex] != ' ') {
-                return false;
-            }
-        }
-        return true;
-    }
+    //Helper für producePdfCrossword
 
     public static void fillTable(Document document, boolean printLetters) {
         float[] pointColumnWidths = new float[Helper.findStopX() - Helper.findStartX() + 1];
