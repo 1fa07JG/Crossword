@@ -12,7 +12,7 @@ public class PlayerApplication {
         for (Question question : questionArrayList) {
             System.out.println(question.toString());
         }
-        PrintCrossword.producePdfCrossword("");
+        PrintCrossword.producePdfCrossword("", false);
 
     }
 

@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 public class PrintCrossword {
 
-    public static void producePdfCrossword(String dest) throws IOException {
+    public static void producePdfCrossword(String dest, boolean solution) throws IOException {
 
         //cw.raster = trimTable(cw.raster);
         Crossword.printField();//wird behalten um fehler finden zu können
@@ -34,7 +34,7 @@ public class PrintCrossword {
         Document document = new Document(pdfDoc);
 
 
-        fillTable(document, false);
+        fillTable(document, solution);
         Paragraph questionParagraph = new Paragraph(PrintCrossword.giveQuestionList());
 
         document.add(questionParagraph);
