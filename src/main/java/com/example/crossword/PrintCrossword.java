@@ -32,7 +32,9 @@ public class PrintCrossword {
 
         pdfDoc.addNewPage();
         Document document = new Document(pdfDoc);
-
+        Paragraph headlineParagraph = new Paragraph("Crossword");
+        headlineParagraph.setFontSize(18);
+        document.add(headlineParagraph);
 
         fillTable(document, solution);
         Paragraph questionParagraph = new Paragraph(PrintCrossword.giveQuestionList());
