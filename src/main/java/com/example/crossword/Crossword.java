@@ -9,6 +9,15 @@ public class Crossword {
     //                                SPALTEN ZEILEN
     static char[][] raster = new char[width][height];  // x (horizontal) / y (vertikal); 0/0 ist links oben
 
+    public static void main(String[] args) {
+
+        exampleSetup();
+
+
+        printField();
+
+
+    }
 
     public static int getWidth() {
         return width;
@@ -22,47 +31,7 @@ public class Crossword {
         return raster;
     }
 
-    public static void main(String[] args) {
-
-        exampleSetup();
-
-
-        printField();
-
-
-    }
-
-    public static void exampleSetup() {
-        initializeField();
-
-        setWordHorizontally(new Question("Sherlock", "The Worlds most Famous fictional Detective (Firstname)", new Coordinates(30, 12)));
-        setWordToWord("ship", "Corvette, Tug, Frigate");
-        setWordToWord("Watson", "The Surname of a Lead character played by Martin Freeman in a 2010 crime drama ");
-
-        setWordToWord("water", "primordial element according to Thales of Miletus");
-        setWordToWord("London", "City near the County of Essex");
-        setWordToWord("Zabbix", "Infrastructure monitoring software first Released in 2001");
-        setWordToWord("Year", "A unit to measure Time defined by Pope Gregor the XIII");
-        setWordToWord("Waal", " municipality in the district of Ostallgäu in Bavaria");
-        setWordToWord("hex", "short for Hexadecimal");
-        //setWordVertically(new Question("First", "Translation of the latin number I. into words", new Coordinates(1, 1)));
-        //setWordHorizontally(new Question("end", "ende in englisch", new Coordinates(57, 19)));
-
-
-    }
-
-    private static void initializeField() {
-
-        for (int y = 0; y < height; y++) {
-            for (int x = 0; x < width; x++) {
-                raster[x][y] = ' ';
-            }
-
-        }
-
-    }
-
-
+    //The Word setting Methods:
     public static void setWordToWord(String answer, String question) {
         //buchstabe finden herausfinden, wo das einzugebende wort beginnen soll.
         //es wäre möglich anstelle der Vorschleife mit einer math. Random funktion zu arbeiten
@@ -140,6 +109,37 @@ public class Crossword {
         question.setHorizontal(false);
         addQuestion(question);
         return true;
+
+    }
+
+    //Helper Methodes for Main
+    private static void initializeField() {
+
+        for (int y = 0; y < height; y++) {
+            for (int x = 0; x < width; x++) {
+                raster[x][y] = ' ';
+            }
+
+        }
+
+    }
+
+    public static void exampleSetup() {
+        initializeField();
+
+        setWordHorizontally(new Question("Sherlock", "The Worlds most Famous fictional Detective (Firstname)", new Coordinates(30, 12)));
+        setWordToWord("ship", "Corvette, Tug, Frigate");
+        setWordToWord("Watson", "The Surname of a Lead character played by Martin Freeman in a 2010 crime drama ");
+
+        setWordToWord("water", "primordial element according to Thales of Miletus");
+        setWordToWord("London", "City near the County of Essex");
+        setWordToWord("Zabbix", "Infrastructure monitoring software first Released in 2001");
+        setWordToWord("Year", "A unit to measure Time defined by Pope Gregor the XIII");
+        setWordToWord("Waal", " municipality in the district of Ostallgäu in Bavaria");
+        setWordToWord("hex", "short for Hexadecimal");
+        //setWordVertically(new Question("First", "Translation of the latin number I. into words", new Coordinates(1, 1)));
+        //setWordHorizontally(new Question("end", "ende in englisch", new Coordinates(57, 19)));
+
 
     }
 
