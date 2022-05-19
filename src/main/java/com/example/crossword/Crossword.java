@@ -137,8 +137,11 @@ public class Crossword {
         setWordToWord("Year", "A unit to measure Time defined by Pope Gregor the XIII");
         setWordToWord("Waal", " municipality in the district of Ostallgäu in Bavaria");
         setWordToWord("hex", "short for Hexadecimal");
-        //setWordVertically(new Question("First", "Translation of the latin number I. into words", new Coordinates(1, 1)));
-        //setWordHorizontally(new Question("end", "ende in englisch", new Coordinates(57, 19)));
+        //setWordVertically(new Question("First", "Translation of the latin number I. into words", new Coordinates(1, 1)));//extrem werte für bestimmte messungen
+        setWordToWord("Heracles", "Hero that had to carrey out ten Labors");
+        //setWordHorizontally(new Question("end", "ende in englisch", new Coordinates(36, 19)));//extrem werte für bestimmte messungen
+        setWordToWord("Lockpicker", "A thief with the Special technical skills of his profession");
+        //setWordHorizontally(new Question("ende", "ende in englisch", new Coordinates(44, 15)));//extrem werte für bestimmte messungen
 
 
     }

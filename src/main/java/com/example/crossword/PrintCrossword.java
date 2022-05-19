@@ -17,8 +17,13 @@ import java.util.ArrayList;
 public class PrintCrossword {
 
     public static void producePdfCrossword(String dest, boolean solution) throws IOException {
-
-        //cw.raster = trimTable(cw.raster);
+        PageSize pageSize = PageSize.A4.rotate();
+        int colummsCount = Helper.findStopX() - Helper.findStartX() + 1;
+        if (colummsCount <= 22) {
+            pageSize = PageSize.A4;
+        } else if (colummsCount >= 40) {
+            pageSize = PageSize.A3.rotate();
+        }
         Crossword.printField();//wird behalten um fehler finden zu können
         if (dest.equals("")) {
             dest = "./crossword.Crossword.pdf";
@@ -28,7 +33,8 @@ public class PrintCrossword {
 
         // Creating a PdfDocument
         PdfDocument pdfDoc = new PdfDocument(writer);
-        pdfDoc.setDefaultPageSize(PageSize.A4.rotate());
+
+        pdfDoc.setDefaultPageSize(pageSize);
 
         pdfDoc.addNewPage();
         Document document = new Document(pdfDoc);
