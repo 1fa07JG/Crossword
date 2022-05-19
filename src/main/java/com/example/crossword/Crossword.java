@@ -54,6 +54,19 @@ public class Crossword {
         }
     }
 
+    public static void setWordRandomly(String answer, String question) {
+        answer = answer.toUpperCase();
+        boolean success;
+        do {
+            Coordinates cor = new Coordinates((int) (Math.random() * 60), (int) (Math.random() * 20));
+            if ((int) (Math.random() * 2) == 0) {
+                success = setWordVertically(new Question(answer, question, cor));
+            } else success = setWordHorizontally(new Question(answer, question, cor));
+        } while (!success);
+
+
+    }
+
 
     public static boolean setWordHorizontally(Question question) {
 
@@ -140,8 +153,9 @@ public class Crossword {
         //setWordVertically(new Question("First", "Translation of the latin number I. into words", new Coordinates(1, 1)));//extrem werte für bestimmte messungen
         setWordToWord("Heracles", "Hero that had to carrey out ten Labors");
         //setWordHorizontally(new Question("end", "ende in englisch", new Coordinates(36, 19)));//extrem werte für bestimmte messungen
-        setWordToWord("Lockpicker", "A thief with the Special technical skills of his profession");
+        setWordRandomly("Lockpicker", "A thief with the Special technical skills of his profession");
         //setWordHorizontally(new Question("ende", "ende in englisch", new Coordinates(44, 15)));//extrem werte für bestimmte messungen
+        setWordRandomly("goja", "The first ship to sail the Northwest Passage");
 
 
     }
