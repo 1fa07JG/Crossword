@@ -79,7 +79,7 @@ public class Crossword {
             raster[x + i][y] = s.charAt(i);
         }
         question.setHorizontal(true);
-        addQuestion(question);
+        PlayerApplication.addQuestion(question);
         return true;
     }
 
@@ -107,7 +107,7 @@ public class Crossword {
             raster[x][y + i] = s.charAt(i);
         }
         question.setHorizontal(false);
-        addQuestion(question);
+        PlayerApplication.addQuestion(question);
         return true;
 
     }
@@ -179,10 +179,6 @@ public class Crossword {
             }
         }
         return -1;
-    }
-
-    private static void addQuestion(Question q) {
-        PlayerApplication.questionArrayList.add(q);
     }
 
     private static Coordinates[] findConnectionInRaster(String s) {

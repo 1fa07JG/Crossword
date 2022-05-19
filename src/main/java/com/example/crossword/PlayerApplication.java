@@ -8,8 +8,8 @@ public class PlayerApplication {
     static Question[] questionList;
     static ArrayList<Question> questionArrayList = new ArrayList<>();
     //es finden sowohl eine Array list als auch ein Array verwendung, um die Vorteile von
-    // beiden nutzen zu können in zukunft wäre anzudenken bei jeder änderung der ArrayList den Array automatisch anzupassen
-    //und somit zu einer Bloßen hilfsmethode des Arrays zu degradieren
+    // beiden nutzen zu können in zukunft wäre anzudenken bei jeder änderung der
+    // ArrayList den Array automatisch anzupassen und somit zu einer Bloßen hilfsmethode des Arrays zu degradieren
 
     public static void main(String[] args) throws IOException {
         Crossword.exampleSetup();
@@ -28,5 +28,8 @@ public class PlayerApplication {
         return questionList;
     }
 
-
+    static void addQuestion(Question q) {
+        questionArrayList.add(q);
+        questionList = createQuestionList();
+    }
 }
